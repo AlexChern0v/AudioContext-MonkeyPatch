@@ -1,4 +1,9 @@
-document.getElementById("demo").addEventListener("click", onCick);
+window.addEventListener("DOMContentLoaded", (event) => {
+    const el = document.getElementById('demo');
+    if (el) {
+      el.addEventListener('click', onCick);
+    }
+})
 
 function onCick() {
   audioContext = new window.AudioContext();
@@ -9,6 +14,7 @@ function onCick() {
   audioContext.decodeAudioData(
       audioData,
       (buffer) => {
+        var source = audioContext.createBufferSource();
         source.buffer = buffer;
 
         source.connect(audioContext.destination);
